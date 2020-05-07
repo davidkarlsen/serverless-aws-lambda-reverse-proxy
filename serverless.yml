@@ -1,0 +1,17 @@
+functions:
+  reverseproxy:
+    handler: lib/reverseproxy.handler
+    name: terra10-${self:custom.stage}-serverless-reverseproxy
+    events:
+      - alb:
+          listenerArn: arn:aws:elasticloadbalancing:eu-west1-1:1234567890:listener/app/t10-tst-alb/xxxx/yyyy
+          priority: 10
+          conditions: 
+            path: 
+              - '/mypath'
+            host: 
+              - proxy.terra10.nl
+            method:
+              - GET
+            # ip:
+            #  - 80.90.100.110
